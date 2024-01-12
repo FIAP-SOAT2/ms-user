@@ -1,7 +1,7 @@
 import { Given, When, Then } from '@cucumber/cucumber';
 
 Given('I have a sample step', async function () {
-  console.log("teste")
+  console.log('teste');
 });
 
 When('I perform an action', async function () {
