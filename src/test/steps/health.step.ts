@@ -1,14 +1,18 @@
 import { Given, When, Then } from '@cucumber/cucumber';
 import axios from 'axios';
+import setupApp from '../../main/config/app';
 
 let response: any;
-
+var app, server
 Given('the server is running', () => {
-  // No specific action needed for this step
+    app = setupApp();
+    server = app.listen(3000, () => {
+        console.log(`Server is running on port 3000`);
+    });
 });
 
 When('I make a GET request to {string}', async (endpoint: string) => {
-  const url = `http://localhost:3000${endpoint}`; // Assuming your server is running on localhost:3000
+  const url = `http://localhost:3000${endpoint}`; 
   response = await axios.get(url);
 });
 
@@ -18,4 +22,8 @@ Then('the response status should be {int}', (expectedStatus: number) => {
 
 Then('the response should contain the text {string}', (expectedText: string) => {
   //expect(response.data).to.include(expectedText);
+});
+
+Then('the server stop', () => {
+    server.close()
 });

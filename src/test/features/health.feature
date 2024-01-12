@@ -5,3 +5,4 @@ Scenario: The API should return a healthy status
     When I make a GET request to "/api/health"
     Then the response status should be 200
     And the response should contain the text "Healthy!"
+    And the server stop
