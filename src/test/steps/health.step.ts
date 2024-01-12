@@ -1,5 +1,7 @@
 import { Given, When, Then } from '@cucumber/cucumber';
+import assert from 'assert';
 import axios from 'axios';
+
 import setupApp from '../../main/config/app';
 
 let response: any;
@@ -17,11 +19,11 @@ When('I make a GET request to {string}', async (endpoint: string) => {
 });
 
 Then('the response status should be {int}', (expectedStatus: number) => {
-  //expect(response.status).to.equal(expectedStatus);
+  assert.equal(response.status, expectedStatus);
 });
 
 Then('the response should contain the text {string}', (expectedText: string) => {
-  //expect(response.data).to.include(expectedText);
+    assert.equal(response.data, expectedText);
 });
 
 Then('the server stop', () => {
