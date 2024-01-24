@@ -1,7 +1,6 @@
 import { Given, When, Then } from '@cucumber/cucumber';
 import assert from 'assert';
 import axios from 'axios';
-import nock from 'nock';
 
 import setupApp from '../../main/config/app';
 
