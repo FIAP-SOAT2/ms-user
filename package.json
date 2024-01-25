@@ -8,7 +8,7 @@
     "db:generate:models": "npx prisma generate",
     "db:migrate": "npx prisma migrate deploy",
     "apply-db-migrations": "prisma migrate deploy",
-    "build": "rimraf dist && tsc -p tsconfig-build.json",
+    "build": "rimraf dist && tsc -p tsconfig-build.json && npm run copy-swagger",
     "copy-swagger": "cp src/main/doc/swagger.yaml dist/main/doc",
     "build:watch": "npm run build -- --watch",
     "start": "node dist/server.js",
