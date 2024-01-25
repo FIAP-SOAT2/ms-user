@@ -23,7 +23,7 @@
       "@application/*": ["application/*"],
       "@infra/*": ["infra/*"],
       "@main/*": ["main/*"],
-      "@test/*": ["../test/*"],
+      "@test/*": ["src/test/*"],
     },                                                   
     "rootDirs": [
       "src",
