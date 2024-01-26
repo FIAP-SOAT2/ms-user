@@ -8,8 +8,7 @@ RUN npm install
 
 COPY . .
 
-RUN npx prisma migrate deploy && \
-    npm run build
+RUN npm run build
 
 EXPOSE 3000
 
