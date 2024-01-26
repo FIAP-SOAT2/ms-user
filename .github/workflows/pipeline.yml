@@ -42,13 +42,6 @@ jobs:
       - name: Build Application
         run: npm run build
 
-  cd:
-    name: Deploy to minikube
-    if: ${{ success() && github.event_name != 'pull_request' }}
-    needs: [ci]
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Set up Minikube
         run: |
           sudo apt-get update
@@ -62,7 +55,14 @@ jobs:
       - name: Tag Docker Image
         run: |
           docker tag anaccampos/ms-user:latest anaccampos/ms-user:$(date +'%Y%m%d%H%M%S')
+    
+  cd:
+    name: Deploy to minikube
+    if: ${{ success() && github.event_name != 'pull_request' }}
+    needs: [ci]
+    runs-on: ubuntu-latest
 
+    steps:
       - name: Load Docker Image into Minikube
         run: |
           minikube cache add anaccampos/ms-user:$(date +'%Y%m%d%H%M%S')
