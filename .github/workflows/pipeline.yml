@@ -58,15 +58,10 @@ jobs:
         run: |
           docker build -t anaccampos/ms-user:latest .
 
-      - name: Tag Docker Image
-        run: |
-          docker tag ${{ secrets.DOCKER_USERNAME }}/ms-user:latest ${{ secrets.DOCKER_USERNAME }}/ms-user:$(date +'%Y%m%d%H%M%S')
-      
       - name: Push Docker Image to Docker Hub
         run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker push ${{ secrets.DOCKER_USERNAME }}/ms-user:latest
-          docker push ${{ secrets.DOCKER_USERNAME }}/ms-user:$(date +'%Y%m%d%H%M%S')
 
   cd:
     name: Deploy to minikube
