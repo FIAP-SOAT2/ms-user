@@ -4,7 +4,6 @@ import { InvalidParamError } from '../../infra/http/errors/InvalidParamError';
 // Mock EnumValidator implementation for testing
 class MockEnumValidator {
   isValid(value: any, enumType: any): boolean {
-    // Implement your mock validation logic here
     return Object.values(enumType).includes(value);
   }
 }
