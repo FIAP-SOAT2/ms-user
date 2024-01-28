@@ -8,9 +8,7 @@ RUN npm install
 
 COPY . .
 
-RUN npx prisma generate && \
-    npm run build && \
-    npm run copy-swagger
+RUN npm run build
 
 EXPOSE 3000
 

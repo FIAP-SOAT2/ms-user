@@ -1,9 +1,7 @@
-import { GetUserById } from '../../application/use-cases/user/GetUserById';
 import { UserRepository } from '../../infra/database/repositories/UserRepository';
 import request from 'supertest';
 import { user, userCPFError, userEmailError } from '../mock/user';
 import setupApp from '../../main/config/app';
-import { PrismaClient } from '@prisma/client';
 
 jest.mock('@prisma/client', () => ({
   PrismaClient: jest.fn(() => ({

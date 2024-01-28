@@ -7,7 +7,6 @@ module.exports = {
   
   // Stop running tests after `n` failures
   bail: true,
-  testEnvironment: 'jest-environment-jsdom-global',
   setupFiles: ['<rootDir>/jest.setup.js'],
 
   // Respect "browser" field in package.json when resolving modules
