@@ -1,7 +1,6 @@
 import { EnumFieldValidation } from '../../infra/http/validations/EnumFieldValidation';
 import { InvalidParamError } from '../../infra/http/errors/InvalidParamError';
 
-// Mock EnumValidator implementation for testing
 class MockEnumValidator {
   isValid(value: any, enumType: any): boolean {
     return Object.values(enumType).includes(value);
