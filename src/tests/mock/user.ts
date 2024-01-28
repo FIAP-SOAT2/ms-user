@@ -12,6 +12,26 @@ export const user: UserEntity = {
   updated_at: undefined,
 };
 
+
+export const user2 = {
+  id: 1,
+  name: 'Joao Maria',
+  email: 'joao.maria@gmail.com',
+  phone: '89973391472',
+  cpf: '35524867474',
+  profile: 'ADMIN',
+  created_at: undefined,
+  updated_at: undefined,
+};
+
+export const userUpdate = {
+  name: 'Joao Maria',
+  email: 'joao.maria@gmail.com',
+  phone: '89973391472',
+  cpf: '35524867474',
+  profile: 'ADMIN',
+};
+
 export const userEmailError: UserEntity = {
   id: 1,
   name: 'Joao Maria',
