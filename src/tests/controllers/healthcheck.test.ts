@@ -8,7 +8,7 @@ describe('healthcheckController', () => {
 
   beforeEach(async function () {
     app = setupApp();
-    server = app.listen(3000, () => {});
+    server = app.listen(4001, () => {});
   });
   afterEach(async function () {
     jest.clearAllMocks();

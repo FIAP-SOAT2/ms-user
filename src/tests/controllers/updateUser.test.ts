@@ -1,6 +1,6 @@
 import { UserRepository } from '../../infra/database/repositories/UserRepository';
 import request from 'supertest';
-import { user, userCPFError, userEmailError } from '../mock/user';
+import { user } from '../mock/user';
 import setupApp from '../../main/config/app';
 describe('Update user', () => {
     let server;
@@ -9,7 +9,7 @@ describe('Update user', () => {
 
     beforeEach(async function () {
         app = setupApp();
-        server = app.listen(3000, () => { });
+        server = app.listen(4001, () => { });
     });
     afterEach(async function () {
         jest.clearAllMocks();
