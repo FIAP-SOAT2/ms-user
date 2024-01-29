@@ -35,6 +35,9 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
+      
+      - name: Run Tests
+        run: npm test
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
@@ -42,21 +45,18 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      - name: Run Tests
-        run: npm test
-
       - name: Build Application
         run: npm run build
 
-      - name: Set up Minikube
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y conntrack
-          minikube start --driver=docker
+      - name: Start minikube
+        uses: medyagh/setup-minikube@master
+
+      - name: Try the cluster !
+        run: kubectl get pods -A
 
       - name: Build Docker Image
         run: |
-          docker build -t anaccampos/ms-user:latest .
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/ms-user:latest .
 
       - name: Push Docker Image to Docker Hub
         run: |
@@ -70,17 +70,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Load Docker Image into Minikube
-        run: |
-          minikube cache add ${{ secrets.DOCKER_USERNAME }}/ms-user:$(date +'%Y%m%d%H%M%S')
-
-      - name: Apply Kubernetes Manifests
-        run: kubectl apply -f k8s/
-
-      - name: Expose Service in Minikube
-        run: kubectl expose deployment ms-user --type=NodePort --env=PORT=$(PORT)
-
-      - name: Show Minikube IP and Port
-        run: |
-          echo "Minikube IP: $(minikube ip)"
-          echo "Service Port: $(kubectl get svc ms-user -o jsonpath='{.spec.ports[0].nodePort}')"
+      - name: Deploy to minikube
+        run: kubectl apply -f ../k8s/

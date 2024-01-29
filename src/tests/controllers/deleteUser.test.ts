@@ -1,6 +1,6 @@
 import { UserRepository } from '../../infra/database/repositories/UserRepository';
 import request from 'supertest';
-import { user, userCPFError, userEmailError } from '../mock/user';
+import { user } from '../mock/user';
 import setupApp from '../../main/config/app';
 describe('Delete user', () => {
     let server;
