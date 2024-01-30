@@ -36,7 +36,7 @@ spec:
       - name: ms-user
         image: anaccampos/ms-user:latest
         ports:
-          - containerPort: 3000
+          - containerPort: 4001
         resources:
           limits:
             cpu: 200m
@@ -47,7 +47,7 @@ spec:
         livenessProbe:
           httpGet:
             path: /api/health
-            port: 3000
+            port: 4001
           initialDelaySeconds: 300
           periodSeconds: 60
           timeoutSeconds: 20

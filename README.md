@@ -24,7 +24,7 @@ Docker-compose is set to start an instance of Postgres and the entire applicatio
 
 ## Swagger
 
-http://localhost:3000/docs/
+http://localhost:4001/docs/
 
 ## Local Access - Endpoints Collection
 
