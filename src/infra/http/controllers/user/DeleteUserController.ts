@@ -20,7 +20,7 @@ export class DeleteUserController extends BaseController {
     if (userOrError instanceof UserNotFoundError) {
       return notFound(userOrError);
     }
-    await this.deleteUser.execute(id);
+    await this.deleteUser.execute(Number(id));
     return noContent();
   }
 }
