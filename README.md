@@ -40,15 +40,98 @@ To separate concerns, the application was built with a Clean Architecture. It is
 
 The Domain layer contains the Entitites and it is in charge of the business logic of the application.
 
+
+```bash
+============= DOMAIN LAYER =====================================================================
+entities
+    L User.ts          // User structure
+
+enum
+  L ProfileEnum.ts
+```
+
 ### Application Layer
 The Application Layer implements all the use cases and contains the interfaces to interact with the outside world.
+```bash
+============= APPLICATION LAYER =================================================================
+config
+
+errors
+
+interfaces
+  L repositories
+    L CreateUserRepository.ts         
+    L DeleteUserRepository.ts
+    L GetUserByFiltersRepository.ts  
+    L GetUserByIdRepository.ts  
+    L GetUsersRepository.ts  
+    L UpdtateUserRepository.ts          
+  L use-cases
+    L UseCase.ts
+    L User
+        L CreateUserInterface.ts         
+        L DeleteUserInterface.ts
+        L GetUserByFiltersInterface.ts  
+        L GetUserByIdInterface.ts  
+        L GetUsersInterface.ts  
+        L UpdateUserInterface.ts   
+
+use-cases                 // use cases implementation
+  L User
+    L CreateUser.ts         
+    L DeleteUser.ts
+    L GetUserByFilters.ts  
+    L GetUserById.ts  
+    L GetUsers.ts  
+    L UpdtateUser.ts      
+```
 
 ### Infra Layer
 The Infra Layer contains the controllers, database connections, repositories, that is, this layer has the concrete implementations of the application.
 
+```bash
+============= INFRA LAYER ======================================================================
+database
+  L migrations      
+  L orm
+    L prisma
+        L schema.prisma 
+    L prisma.ts
+  L repositories
+    L UserRepository.ts
 
+http
+  L controllers     // request and response processing logic
+  L errors
+  L helpers
+  L interfaces
+  L middlewares
+  L validations
+  L validators
+```
 ### Main Layer
 The Main Layer is the entry point of the application. It contains the framework (Express), the routes, the factory method to inject the necessary dependencies.
+
+```bash
+============= MAIN LAYER ========================================================================
+adapters
+
+config
+
+doc
+  L swagger.yaml
+  L swagger-config.ts
+
+factories
+  L controllers
+  L use-cases
+
+middlewares
+
+routes
+  L healthcheck.ts     // healthcheck route
+  L user-route.ts   // users routes
+```
 
 ## What we use?
 
