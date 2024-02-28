@@ -9,7 +9,7 @@ import { makeDeleteUserController } from '../factories/controllers/user/delete-u
 
 export default (router: Router): void => {
   router.post('/user/', expressRouteAdapter(makeCreateUserController()));
-  router.get('/user/', expressRouteAdapter(makeGetUsersController()));
+  router.get('/users/', expressRouteAdapter(makeGetUsersController()));
   router.get('/user/filters', expressRouteAdapter(makeGetUserByFiltersController()));
   router.get('/user/:id', expressRouteAdapter(makeGetUserByIdController()));
   router.patch('/user/:id', expressRouteAdapter(makeUpdateUserController()));
