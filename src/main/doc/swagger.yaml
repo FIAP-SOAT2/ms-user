@@ -6,10 +6,28 @@ servers:
   - url: 'http://localhost:4001'
 tags:
   - name: User
-  - name: Product
-  - name: Order
 paths:
   /api/user:
+    post:
+      tags:
+        - User
+      summary: createUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              name: Joao Maria
+              email: joao.maria@gmail.com
+              phone: "899733981472"
+              profile: ADMIN
+              cpf: "35524867474"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/users:
     get:
       tags:
         - User
