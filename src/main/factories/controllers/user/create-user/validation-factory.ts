@@ -11,6 +11,7 @@ import { EmailValidatorAdapter } from '../../../../../infra/http/validators/Emai
 import { CPfValidatorAdapter } from '../../../../../infra/http/validators/CpfValidatorAdapter';
 
 export const makeCreateUserValidation = (): ValidationComposite => {
+  console.log('Making the validation of user\'s body! - validator')
   const emailValidator = new EmailValidatorAdapter();
   const cpfValidator = new CPfValidatorAdapter();
   const numberValidator = new NumberValidatorAdapter();

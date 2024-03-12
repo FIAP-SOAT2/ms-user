@@ -1,6 +1,6 @@
 /node_modules
 /dist
 .env
-/src/infra/database/orm/prisma/migrations
+/prisma/migrations
 /coverage
 /.nyc_output

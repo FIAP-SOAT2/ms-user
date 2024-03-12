@@ -8,6 +8,7 @@ import { prisma } from '../../../infra/database/orm/prisma';
 
 export class UserRepository implements CreateUserRepository, GetUserRepository, GetUserByIdRepository, GetUserByFiltersRepository, UpdateUserRepository, DeleteUserRepository {
   async createUser(userData: any): Promise<void> {
+    console.log('Creating a user! - repository')
     try {
       await prisma.user.create({
         data: userData,
