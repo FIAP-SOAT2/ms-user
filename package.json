@@ -27,6 +27,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "prisma": {
+    "schema": "src/infra/database/orm/prisma/schema.prisma",
+    "migrations": "src/infra/database/orm/prisma/migrations"
+  },
   "devDependencies": {
     "@cucumber/cucumber": "^10.2.1",
     "@types/cors": "^2.8.13",
