@@ -10,10 +10,13 @@ export class UserRepository implements CreateUserRepository, GetUserRepository, 
   async createUser(userData: any): Promise<void> {
     console.log('Creating a user! - repository')
     try {
+      console.log('Creating a user! - repository', userData)
       await prisma.user.create({
         data: userData,
       });
+      console.log('After! - repository', userData);
     } catch (error) {
+      console.log(error);
       throw new Error((error as Error).message);
     }
   }

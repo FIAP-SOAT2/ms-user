@@ -8,6 +8,8 @@ RUN npm install
 
 COPY . .
 
+RUN npm run db:generate:models
+
 RUN npm run build
 
 EXPOSE 4001
