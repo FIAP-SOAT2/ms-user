@@ -5,8 +5,17 @@ import { GetUserByFiltersRepository } from '@application/interfaces/repositories
 import { UpdateUserRepository } from '../../../application/interfaces/repositories/user/UpdateUserRepository';
 import { DeleteUserRepository } from '../../../application/interfaces/repositories/user/DeleteUserRepository';
 import { prisma } from '../../../infra/database/orm/prisma';
+import { GetUserByCPFRepository } from '../../../application/interfaces/repositories/user/GetUserByCPFRepository';
 
-export class UserRepository implements CreateUserRepository, GetUserRepository, GetUserByIdRepository, GetUserByFiltersRepository, UpdateUserRepository, DeleteUserRepository {
+export class UserRepository implements CreateUserRepository, GetUserRepository, GetUserByIdRepository, GetUserByFiltersRepository, UpdateUserRepository, DeleteUserRepository, GetUserByCPFRepository {
+  async getUserByCPF(cpf: GetUserByCPFRepository.Request): Promise<any> {
+    const data = await prisma.user.findUnique({
+      where: {
+        cpf
+      },
+    });
+    return data;
+  }
   async createUser(userData: any): Promise<void> {
     try {
       await prisma.user.create({
