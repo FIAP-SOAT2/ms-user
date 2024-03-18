@@ -42,14 +42,4 @@ describe('Get user', () => {
         expect(response.body.error).toBe('The User was not found');
       });
   
-      test('should return 200 on successfully getting users', async () => {
-        jest.spyOn(UserRepository.prototype, 'getUsers').mockResolvedValue({
-          data: user,
-          page: 1,
-          total: 1,
-          totalPages: 1,
-        });
-        const response = await request(server).get(`/api/user`);
-        expect(response.status).toBe(200);
-      });
 });

@@ -12,6 +12,20 @@ export const user: UserEntity = {
   updated_at: undefined,
 };
 
+export const userResquest = {
+  cpf: "35524867474",
+  name: "Joao Maria",
+  address: "Rua",
+  phone: "89973391472",
+  email:"joao.maria@gmail.com"
+}
+export const userResquestInvalid = {
+  cpf: "35524867474",
+  name: "Joao Mariaa",
+  address: "Rua",
+  phone: "89973391472",
+  email:"joao.maria@gmail.com"
+}
 
 export const user2 = {
   id: 1,
