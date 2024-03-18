@@ -5,7 +5,7 @@ metadata:
   labels:
     app: postgres
 data:
-  POSTGRES_DB: postgress
-  POSTGRES_USER: postgress
-  POSTGRES_PASSWORD: postgress
-  DATABASE_URL: "postgresql://postgres:pass@localhost/base?schema=public"
+  POSTGRES_DB: "msuser"
+  POSTGRES_USER: "postgress"
+  POSTGRES_PASSWORD: "tech-challenge-5"
+  DATABASE_URL: "rds-user.cxmdxuni8gnk.us-east-1.rds.amazonaws.com"

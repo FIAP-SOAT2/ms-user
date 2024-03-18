@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: API - Orders Clean Project
+  title: API - User Microservice
   version: 1.0.0
 servers:
   - url: 'http://localhost:4001'
@@ -11,23 +11,22 @@ paths:
     post:
       tags:
         - User
-      summary: createUser
+      summary: CreateUser
       requestBody:
-        required: true
         content:
           application/json:
-            example:
-              name: Joao Maria
-              email: joao.maria@gmail.com
-              phone: "899733981472"
-              profile: ADMIN
-              cpf: "35524867474"
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
       responses:
         '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /api/users:
+          description: Successful operation
+        '400':
+          description: Invalid input
+        '404':
+          description: Not found
+        '500':
+          description: Internal server error
     get:
       tags:
         - User
@@ -47,7 +46,17 @@ paths:
         '200':
           description: Successful response
           content:
-            application/json: {}
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetUser'
+        '400':
+          description: Invalid input
+        '404':
+          description: Not found
+        '500':
+          description: Internal server error
   /api/filters:
     get:
       tags:
@@ -57,19 +66,27 @@ paths:
         - name: cpf
           in: query
           schema:
-            type: integer
+            type: string
           example: '33372047087'
-        - name: page
+        - name: email
           in: query
           schema:
-            type: integer
-          example: '1'
+            type: string
+          example: 'josemaria@yopmail.com'
       responses:
         '200':
           description: Successful response
           content:
-            application/json: {}
-  /api/user/1:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUser'
+        '400':
+          description: Invalid input
+        '404':
+          description: Not found
+        '500':
+          description: Internal server error
+  /api/user/{user_id}:
     get:
       tags:
         - User
@@ -78,8 +95,15 @@ paths:
         '200':
           description: Successful response
           content:
-            application/json: {}
-  /api/user/10:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUser'
+        '400':
+          description: Invalid input
+        '404':
+          description: Not found
+        '500':
+          description: Internal server error
     delete:
       tags:
         - User
@@ -88,4 +112,68 @@ paths:
         '200':
           description: Successful response
           content:
-            application/json: {}
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUser'
+        '400':
+          description: Invalid input
+        '404':
+          description: Not found
+        '500':
+          description: Internal server error
+    patch:
+      tags:
+        - User
+      summary: patchUser
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: { }
+        '400':
+          description: Invalid input
+        '404':
+          description: Not found
+        '500':
+          description: Internal server error
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+          example: 'jose maria'
+        cpf:
+          type: integer
+          example: 82872241878
+        email:
+          type: string
+          example: "josemaria@yopmail.com"
+        phone:
+          type: string
+          example: "3799856523244"
+        profile:
+          type: integer
+          example: 6
+    GetUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: "jose maria"
+        email:
+          type: string
+          example: "jose.maria@yopmail.com"
+        phone:
+          type: string
+          example: "359999999999"
+        cpf:
+          type: string
+          example: "1111222222222"
+        profile:
+          type: string
+          example: "CUSTOMER"

@@ -1,44 +1,11 @@
 generator client {
   provider = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-1.1.x","debian-openssl-3.0.x", "linux-musl", "linux-musl-openssl-3.0.x"]
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-}
-
-model order {
-  id         Int                @id(map: "PK_1031171c13130102495201e3e20") @default(autoincrement())
-  status     order_status_enum  
-  payment    order_payment_enum
-  paid       Boolean            @default(false)
-  paidId     Decimal?           @db.Decimal(10, 0)
-  note       String?            @db.VarChar(100)
-  created_at DateTime           @default(now()) @db.Timestamp(6)
-  updated_at DateTime           @default(now()) @db.Timestamp(6)
-  userId     Int?
-  user       user?              @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_caabe91507b3379c7ba73637b84")
-  orderProducts orderproduct[]
-}
-
-model orderproduct {
-  id        Int  @id(map: "PK_4584c1bdc1844c0067a9aed82d7") @default(autoincrement())
-  orderId   Int?
-  quantity  Int?
-  price     Int?
-  productId Int
-  order    order? @relation(fields: [orderId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_4584c1bdc1844c0067a9aed82d7")
-  product  product @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "FK_4584c1bdc1844c0067a9aed82d8")
-}
-
-model product {
-  id          Int                   @id(map: "PK_bebc9158e480b949565b4dc7a82") @default(autoincrement())
-  name        String                @unique(map: "UQ_22cc43e9a74d7498546e9a63e77") @db.VarChar(100)
-  description String                @db.VarChar(100)
-  category    product_category_enum 
-  price       Decimal               @db.Decimal(10, 2)
-  stock       Int
-  orderProducts orderproduct[]
 }
 
 model user {
@@ -50,31 +17,6 @@ model user {
   profile    user_profile_enum 
   created_at DateTime          @default(now()) @db.Timestamp(6)
   updated_at DateTime          @default(now()) @db.Timestamp(6)
-  order      order[]
-}
-
-enum order_payment_enum {
-  CREDITCARD @map("0")
-  DEBITCARD @map("1")
-  MONEY @map("2")
-  PIX   @map("3")
-}
-
-enum order_status_enum {
-  READY @map("0")
-  INPROGRESS @map("1")
-  PENDING @map("2")
-  CANCELED @map("3")
-  DELIVERED @map("4")
-  PAYMENTFAIL @map("5")
-}
-
-enum product_category_enum {
-  BURGUER @map("0")
-  BEVARAGE @map("1")
-  DESSERT @map("2")
-  APPETIZER @map("3")
-  OTHER @map("4")
 }
 
 enum user_profile_enum {

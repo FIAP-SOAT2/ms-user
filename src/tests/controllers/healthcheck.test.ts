@@ -16,7 +16,7 @@ describe('healthcheckController', () => {
   });
 
   test('should return 200', async () => {
-    const response = await request(server).get('/api/health');
+    const response = await request(server).get('/ms-user/health-check');
     expect(response.status).toBe(200);
   });
 });
